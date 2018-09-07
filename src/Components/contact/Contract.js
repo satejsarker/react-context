@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { Consumer } from '../context';
+import { Consumer } from '../../context';
 
 class Contract extends Component {
   constructor(){

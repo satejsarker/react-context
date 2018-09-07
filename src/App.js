@@ -5,9 +5,10 @@ import React, {
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Header from '../src/Components/Header';
-import Contacts from './Components/Contacts';
+import Header from '../src/Components/layout/Header';
+import Contacts from './Components/contact/Contacts';
 import { Provider } from './context';
+import AddContact from './Components/contact/AddContact';
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
               <div className = "App" >
                 <Header branding = "Contact Manger" / >
                 <div className = "container" >
+                <AddContact />
                 <Contacts / >
                 </div>
                 </div>
