@@ -16,8 +16,14 @@ import { Consumer } from '../../context';
                                 contacts
                             }=value
                             return(
-                                  < React.Fragment > {
-                                          contacts.map(contact =>
+                                  < React.Fragment > 
+                                      <h1 className="display-4 md2">
+                                      <span className="text-danger">
+                                          Contacts
+                                      </span>
+                                               List
+                                      </h1>
+                                          {contacts.map(contact =>
                                               <
                                               Contract key = {
                                                   Contract.id
