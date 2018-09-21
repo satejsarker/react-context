@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Consumer } from '../../context';
+import axios from 'axios';
 
 class Contract extends Component {
   constructor(){
       super()
-      this.state={showContactInfo:true
+      this.state={showContactInfo:false
 
       };
   }
 
   onDelete = (id,dispatch) =>{
-        dispatch({type:'DELETE_CONTACT',payload:id})
+
+    axios({
+        url: `https://jsonplaceholder.typicode.com/users/${id}`,
+        method:"DELETE"
+    }).then(res=>
+        dispatch({
+            type: 'DELETE_CONTACT',
+            payload: id
+        })
+    )
+        
   }
     
     static propTypes = {

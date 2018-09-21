@@ -24,8 +24,7 @@ import { Consumer } from '../../context';
                                                List
                                       </h1>
                                           {contacts.map(contact =>
-                                              <
-                                              Contract key = {
+                                              <Contract key = {
                                                   Contract.id
                                               }
                                               contact = {
