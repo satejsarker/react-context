@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Consumer } from '../../context';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 class Contract extends Component {
   constructor(){
@@ -11,17 +12,14 @@ class Contract extends Component {
       };
   }
 
-  onDelete = (id,dispatch) =>{
+  onDelete = async (id,dispatch) =>{
 
-    axios({
+   await axios({
         url: `https://jsonplaceholder.typicode.com/users/${id}`,
         method:"DELETE"
-    }).then(res=>
-        dispatch({
-            type: 'DELETE_CONTACT',
-            payload: id
-        })
-    )
+    })
+
+    dispatch({type:"DELETE_CONTACT",payload:id})
         
   }
     
@@ -58,6 +56,19 @@ class Contract extends Component {
                    fontSize:'18px',
                    float:'right',color:'red'}}
                    ></i>
+                   <Link to={`/contact/edit/${contact.id}`}>
+                   <i className="fas fa-pencil-alt"
+                   style={{
+                       cursor:'pointer',
+                       float:'right',
+                       color:'black',
+                       marginRight:'1rem',
+                       fontSize:'15px'
+                   }}
+                   ></i>
+                   
+                   </Link>
+
                 </h1>
                 {showContactInfo ?(
                      < ul className = "list-group" >

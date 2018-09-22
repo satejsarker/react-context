@@ -12,6 +12,7 @@ import AddContact from './Components/contact/AddContact';
 import About from './Components/pages/About';
 import NotFound from './Components/pages/404';
 import Test from './Components/test/test';
+import EditContact from './Components/contact/EditContact';
 
 
 class App extends Component {
@@ -28,6 +29,8 @@ class App extends Component {
                 
 
               <Route exact path='/test' component={Test} />
+              <Route exact path='/contact/edit/:id'
+              component={EditContact}/>
               {/* page not found  */} 
                 <Route component={NotFound}  />
 

@@ -6,12 +6,25 @@ import { Consumer } from '../../context';
 import TextInputGroup from '../layout/TextInputGroup';
 import axios from 'axios';
 
-class AddContact extends Component {
+class EditContact extends Component {
     state = {
         name: '',
         phone: '',
         email: '',
         erros:{}
+    }
+
+
+    async componentDidMount(){
+        const {id}=this.props.match.params;
+        const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+
+        const contact=res.data;
+        this.setState({
+            name:contact.name,
+            email:contact.email,
+            phone:contact.phone
+        })
     }
 onChange=e=>{
     this.setState({
@@ -47,25 +60,17 @@ if(name===''){
         })
         return;
     }
-
-
-    const newContact={
-      
+    const updateContact={
         name,
-        email,
         phone,
+        email
     }
 
- const res= await   axios({ url: "https://jsonplaceholder.typicode.com/users",
-    method:'POST',
-    data:newContact
-
-    })
+const {id}=this.props.match.params;
+const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,updateContact)
     dispatch({
-        type: 'ADD_CONTACT',
-        payload: res.data
+        type:"UPDATE_CONTACT",payload:res.data
     })
-    
     this.setState({
         name:'',
         email:'',
@@ -86,7 +91,7 @@ render(){
                         <div className='card md-3'>
 
             <div className="card-header">
-                Add Contact
+                Edit Contact
             </div>
             <div className="card-body">
             <form  onSubmit={this.onSubmit.bind(this,dispatch)}>
@@ -100,7 +105,7 @@ render(){
                 error={erros.name}
                 />
                                   <TextInputGroup
-                                        type='number'
+                                        type='text'
                                       label="Phone"
                                       name="phone"
                                       placeholder="enter phone .. "
@@ -117,7 +122,7 @@ render(){
                                       value={email}
                                       onChange={this.onChange}
                                   />
-                    <input type="submit" value="contact" className="btn btn-light btn-primary btn-block " />
+                    <input type="submit" value="Edite" className="btn btn-light btn-primary btn-block " />
             </form>
             </div>
              </div>                        
@@ -129,4 +134,4 @@ render(){
 
     }
 }
-export default AddContact;
+export default EditContact;
